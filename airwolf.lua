@@ -16,6 +16,8 @@ function _init()
             local speed = 4
             local blade_length = 6
 
+            self.move(self)
+
             self.angle += speed
             -- Keep within 0 to 2*pi
             self.angle = self.angle % (2 * pi)
@@ -39,6 +41,16 @@ function _init()
             -- The tail rotor
             circ(self.x + 8, self.y + 14, 1, 13)
         end,
+
+        move = function(self)
+            local b = buttons
+
+            if btn(b.left) then self.x -= 1
+            elseif btn(b.right) then self.x += 1 end
+
+            if btn(b.down) then self.y += 1
+            elseif btn(b.up) then self.y -= 1 end
+        end
     }
 end
 
