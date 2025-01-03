@@ -11,6 +11,7 @@ function TheLady:new()
     this.height = 2
     this.angle = 0
     this.bullets = {}
+    this.last_bullet = time()
 
     return this
 end
@@ -67,8 +68,11 @@ function TheLady:update_bullets()
             deli(self.bullets, i)
         end
     end
-    if btn(buttons.o) then
-        add(self.bullets, Bullet:new(self.x + 8, self.y - 1))
+    if time() - self.last_bullet > 0.2 then
+        if btn(buttons.o) then
+            add(self.bullets, Bullet:new(self.x + 8, self.y - 1))
+            self.last_bullet = time()
+        end
     end
 end
 

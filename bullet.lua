@@ -13,10 +13,10 @@ end
 
 -- Returns true when the bullet is outside the screen.
 function Bullet:update()
-    self.y -= 1
+    self.y -= 3
     return (self.y == 0)
 end
 
 function Bullet:draw()
-    line(self.x, self.y, self.x, self.y - 1, colors.light_grey)
+    pset(self.x, self.y - 2, colors.light_grey)
 end
