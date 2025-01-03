@@ -10,6 +10,7 @@ function TheLady:new()
     this.width = 2
     this.height = 2
     this.angle = 0
+    this.bullets = {}
 
     return this
 end
@@ -61,15 +62,18 @@ function TheLady:update_main_rotor()
 end
 
 function TheLady:update_bullets()
-    if self.bullet != nil then
-        if self.bullet:update() then
-            self.bullet = nil
+    for i, b in ipairs(self.bullets) do
+        if b:update() then
+            deli(self.bullets, i)
         end
-    elseif btn(buttons.o) then
-        self.bullet = Bullet:new(self.x + 8, self.y - 1)
+    end
+    if btn(buttons.o) then
+        add(self.bullets, Bullet:new(self.x + 8, self.y - 1))
     end
 end
 
 function TheLady:draw_bullets()
-    if self.bullet != nil then self.bullet:draw() end
+    for i, b in ipairs(self.bullets) do
+        b:draw()
+    end
 end
