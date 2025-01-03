@@ -3,6 +3,7 @@ version 42
 __lua__
 #include consts.lua
 #include bullet.lua
+#include bullets.lua
 #include the_lady.lua
 #include airwolf.lua
 

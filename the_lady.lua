@@ -10,8 +10,7 @@ function TheLady:new()
     this.width = 2
     this.height = 2
     this.angle = 0
-    this.bullets = {}
-    this.last_bullet = time()
+    this.bullets = Bullets:new()
 
     return this
 end
@@ -19,7 +18,7 @@ end
 function TheLady:update()
     self:move()
     self:update_main_rotor()
-    self:update_bullets()
+    self.bullets:update(self.x, self.y)
 end
 
 function TheLady:draw()
@@ -32,7 +31,7 @@ function TheLady:draw()
     -- The tail rotor
     circ(self.x + 8, self.y + 14, 1, colors.lavender)
 
-    self:draw_bullets()
+    self.bullets:draw()
 end
 
 function TheLady:move()
@@ -62,22 +61,3 @@ function TheLady:update_main_rotor()
     }
 end
 
-function TheLady:update_bullets()
-    for i, b in ipairs(self.bullets) do
-        if b:update() then
-            deli(self.bullets, i)
-        end
-    end
-    if time() - self.last_bullet > 0.2 then
-        if btn(buttons.o) then
-            add(self.bullets, Bullet:new(self.x + 8, self.y - 1))
-            self.last_bullet = time()
-        end
-    end
-end
-
-function TheLady:draw_bullets()
-    for b in all(self.bullets) do
-        b:draw()
-    end
-end
