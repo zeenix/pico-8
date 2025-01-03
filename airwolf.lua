@@ -39,7 +39,7 @@ function _init()
             line(coords.x1, coords.y1, coords.x2, coords.y2, 5)
 
             -- The tail rotor
-            circ(self.x + 8, self.y + 14, 1, 13)
+            circ(self.x + 8, self.y + 14, 1, colors.lavender)
         end,
 
         move = function(self)
