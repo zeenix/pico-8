@@ -73,7 +73,7 @@ function TheLady:update_bullets()
 end
 
 function TheLady:draw_bullets()
-    for i, b in ipairs(self.bullets) do
+    for b in all(self.bullets) do
         b:draw()
     end
 end
