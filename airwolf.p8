@@ -2,6 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
 #include consts.lua
+#include the_lady.lua
 #include airwolf.lua
 
 __gfx__

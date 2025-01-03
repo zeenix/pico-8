@@ -1,3 +1,5 @@
+pi = 3.14159265359
+
 buttons = {
     left = 0,
     right = 1,
