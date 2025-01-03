@@ -4,6 +4,7 @@ __lua__
 #include consts.lua
 #include bullet.lua
 #include bullets.lua
+#include rotor.lua
 #include the_lady.lua
 #include airwolf.lua
 

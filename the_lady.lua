@@ -9,24 +9,23 @@ function TheLady:new()
      -- width+height in number of sprites (IOW multiple of 8 pixels)
     this.width = 2
     this.height = 2
-    this.angle = 0
     this.bullets = Bullets:new()
+    this.rotor = Rotor:new()
 
     return this
 end
 
 function TheLady:update()
     self:move()
-    self:update_main_rotor()
+    self.rotor:update(self.x, self.y)
     self.bullets:update(self.x, self.y)
 end
 
 function TheLady:draw()
     spr(self.sprite_num, self.x, self.y, self.width, self.height)
 
-    local coords = self.blade_coords
     -- The main rotor
-    line(coords.x1, coords.y1, coords.x2, coords.y2, 5)
+    self.rotor:draw()
 
     -- The tail rotor
     circ(self.x + 8, self.y + 14, 1, colors.lavender)
@@ -42,22 +41,5 @@ function TheLady:move()
 
     if btn(b.down) then self.y += 1
     elseif btn(b.up) then self.y -= 1 end
-end
-
-function TheLady:update_main_rotor()
-    local speed = 4
-    local blade_length = 6
-
-    self.angle += speed
-    -- Keep within 0 to 2*pi
-    self.angle = self.angle % (2 * pi)
-
-    local a = (self.angle / (2 * pi)) + 0.5  -- Convert to brads
-    self.blade_coords = {
-        x1 = self.x + cos(a) * blade_length + 8,
-        y1 = self.y + sin(a) * blade_length + 6,
-        x2 = self.x - cos(a) * blade_length + 8,
-        y2 = self.y - sin(a) * blade_length + 6,
-    }
 end
 
