@@ -17,6 +17,7 @@ end
 function TheLady:update()
     self:move()
     self:update_main_rotor()
+    self:update_bullets()
 end
 
 function TheLady:draw()
@@ -28,6 +29,8 @@ function TheLady:draw()
 
     -- The tail rotor
     circ(self.x + 8, self.y + 14, 1, colors.lavender)
+
+    self:draw_bullets()
 end
 
 function TheLady:move()
@@ -57,3 +60,16 @@ function TheLady:update_main_rotor()
     }
 end
 
+function TheLady:update_bullets()
+    if self.bullet != nil then
+        if self.bullet:update() then
+            self.bullet = nil
+        end
+    elseif btn(buttons.o) then
+        self.bullet = Bullet:new(self.x + 8, self.y - 1)
+    end
+end
+
+function TheLady:draw_bullets()
+    if self.bullet != nil then self.bullet:draw() end
+end
