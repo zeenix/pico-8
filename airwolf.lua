@@ -9,6 +9,6 @@ function _update()
 end
 
 function _draw()
-    cls(3)
+    map(0, 0, 0, 0, 16, 16)
     airwolf:draw()
 end
