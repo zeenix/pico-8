@@ -24,5 +24,6 @@ function Bullet:update()
 end
 
 function Bullet:draw()
-    pset(self.x, self.y, colors.black)
+    local color = self.is_enemy and colors.red or colors.black
+    pset(self.x, self.y, color)
 end
