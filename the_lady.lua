@@ -9,7 +9,7 @@ function TheLady:new()
      -- width+height in number of sprites (IOW multiple of 8 pixels)
     this.width = 2
     this.height = 2
-    this.bullets = Bullets:new()
+    this.bullets = Bullets:new("up")
     this.main_rotor = Rotor:new("main")
     this.tail_rotor = Rotor:new("tail")
 
