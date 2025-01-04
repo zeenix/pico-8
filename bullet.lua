@@ -15,10 +15,10 @@ end
 -- Returns true when the bullet is outside the screen.
 function Bullet:update()
     if self.enemy then
-        self.y -= 3
+        self.y += 3
         return (self.y == 0)
     else
-        self.y += 3
+        self.y -= 3
         return (self.y == 127)
     end
 end
