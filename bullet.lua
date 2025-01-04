@@ -18,5 +18,5 @@ function Bullet:update()
 end
 
 function Bullet:draw()
-    pset(self.x, self.y - 2, colors.light_grey)
+    pset(self.x, self.y - 2, colors.black)
 end
