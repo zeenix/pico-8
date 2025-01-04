@@ -9,7 +9,7 @@ function Aircraft:new(x, y, width, height, sprite, rotor_props)
      -- width+height in number of sprites (IOW multiple of 8 pixels)
     this.width = width
     this.height = height
-    local enemy = this:is_enemy()
+    local is_enemy = this:is_enemy()
     this.bullets = Bullets:new(is_enemy)
     this.main_rotor = Rotor:new(rotor_props[1])
     this.tail_rotor = Rotor:new(rotor_props[2])
