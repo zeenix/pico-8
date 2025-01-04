@@ -1,11 +1,11 @@
 Bullet = {}
 Bullet.__index = Bullet
 
-function Bullet:new(x, y, direction)
+function Bullet:new(x, y, is_enemy)
     local this = setmetatable({}, Bullet)
     this.x = x
     this.y = y
-    this.direction = direction
+    this.is_enemy = is_enemy
 
     sfx(0)
 
@@ -14,7 +14,7 @@ end
 
 -- Returns true when the bullet is outside the screen.
 function Bullet:update()
-    if self.direction == "up" then
+    if self.enemy then
         self.y -= 3
         return (self.y == 0)
     else

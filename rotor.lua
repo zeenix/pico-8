@@ -1,20 +1,13 @@
 Rotor = {}
 Rotor.__index = Rotor
 
-function Rotor:new(type)
+function Rotor:new(props)
     local this = setmetatable({}, Rotor)
     this.angle = 0
-    if type == "main" then
-        this.length = 6
-        this.x_offset = 8
-        this.y_offset = 6
-        this.color = colors.dark_grey
-    else
-        this.length = 2
-        this.x_offset = 8
-        this.y_offset = 14
-        this.color = colors.dark_grey
-    end
+    this.x_offset = props.x
+    this.y_offset = props.y
+    this.length = props.length
+    this.color = colors.dark_grey
 
     return this
 end
@@ -37,6 +30,7 @@ end
 
 function Rotor:draw()
     local coords = self.coords
+    if coords == nil then return end
     line(coords.x1, coords.y1, coords.x2, coords.y2, self.color)
 end
 
