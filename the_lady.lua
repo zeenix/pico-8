@@ -10,25 +10,24 @@ function TheLady:new()
     this.width = 2
     this.height = 2
     this.bullets = Bullets:new()
-    this.rotor = Rotor:new()
+    this.main_rotor = Rotor:new("main")
+    this.tail_rotor = Rotor:new("tail")
 
     return this
 end
 
 function TheLady:update()
     self:move()
-    self.rotor:update(self.x, self.y)
+    self.main_rotor:update(self.x, self.y)
+    self.tail_rotor:update(self.x, self.y)
     self.bullets:update(self.x, self.y)
 end
 
 function TheLady:draw()
     spr(self.sprite_num, self.x, self.y, self.width, self.height)
 
-    -- The main rotor
-    self.rotor:draw()
-
-    -- The tail rotor
-    circ(self.x + 8, self.y + 14, 1, colors.lavender)
+    self.main_rotor:draw()
+    self.tail_rotor:draw()
 
     self.bullets:draw()
 end
