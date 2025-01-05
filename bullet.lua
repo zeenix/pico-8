@@ -16,10 +16,10 @@ end
 function Bullet:update()
     if self.is_enemy then
         self.y += 3
-        return (self.y == 0)
+        return (self.y > 127)
     else
         self.y -= 3
-        return (self.y == 127)
+        return (self.y < 0)
     end
 end
 
