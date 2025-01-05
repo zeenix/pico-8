@@ -30,7 +30,8 @@ function Aircraft:enemy_heli_small()
         {x = 4, y = 4, length = 2}, -- Main rotor
         {x = 3, y = 0, length = 1}, -- Tail rotor
     }
-    return Aircraft:new(20, 0, 1, 1, 2, rotor_props)
+    local x = flr(rnd(128))
+    return Aircraft:new(x, -3, 1, 1, 2, rotor_props)
 end
 
 -- Returns true if the aircraft has gone outside the screen.
@@ -61,6 +62,8 @@ function Aircraft:move()
         self.y += 0.5
         if self.x < airwolf.x then self.x += 0.3
         elseif self.x > airwolf.x then self.x -= 0.3 end
+
+        return (self.x > 127 or self.y > 127)
     else
         local b = buttons
 
@@ -69,9 +72,9 @@ function Aircraft:move()
 
         if btn(b.down) then self.y += 1
         elseif btn(b.up) then self.y -= 1 end
-    end
 
-    return (self.x < 0 or self.x > 127 or self.y < 0 or self.y > 127)
+        return (self.x < 0 or self.x > 127 or self.y < 0 or self.y > 127)
+    end
 end
 
 function Aircraft:is_enemy()
