@@ -12,7 +12,7 @@ function Rotor:new(props)
     return this
 end
 
-function Rotor:update(x, y)
+function Rotor:update(entity)
     local speed = 4
 
     self.angle += speed
@@ -20,11 +20,12 @@ function Rotor:update(x, y)
     self.angle = self.angle % (2 * pi)
 
     local a = (self.angle / (2 * pi)) + 0.5  -- Convert to brads
+    local e = entity
     self.coords = {
-        x1 = x + cos(a) * self.length + self.x_offset,
-        y1 = y + sin(a) * self.length + self.y_offset,
-        x2 = x - cos(a) * self.length + self.x_offset,
-        y2 = y - sin(a) * self.length + self.y_offset,
+        x1 = e.x + cos(a) * self.length + self.x_offset,
+        y1 = e.y + sin(a) * self.length + self.y_offset,
+        x2 = e.x - cos(a) * self.length + self.x_offset,
+        y2 = e.y - sin(a) * self.length + self.y_offset,
     }
 end
 
@@ -33,4 +34,3 @@ function Rotor:draw()
     if coords == nil then return end
     line(coords.x1, coords.y1, coords.x2, coords.y2, self.color)
 end
-
