@@ -3,6 +3,7 @@ function _init()
 
     airwolf = TheLady:new()
     enemy = EnemyAircraft:new()
+    bullets = Bullets:new()
 
     music(0)
 end
@@ -13,6 +14,7 @@ function _update()
         -- For now just respawn the enemy.
         enemy = EnemyAircraft:new()
     end
+    bullets:update()
 
     if stat(54) == -1 then
         -- The startup music has finished playing.
@@ -25,4 +27,7 @@ function _draw()
     map(0, 0, 0, 0, 16, 16)
     airwolf:draw()
     enemy:draw()
+    bullets:draw()
+
+    print(count(bullets.bullets), 123, 123, colors.white)
 end

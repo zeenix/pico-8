@@ -9,9 +9,9 @@ function TheLady:new()
      -- width+height in number of sprites (IOW multiple of 8 pixels)
     this.width = 2
     this.height = 2
-    this.bullets = Bullets:new(false)
     this.main_rotor = Rotor:new({x = 8, y = 6, length = 6})
     this.tail_rotor = Rotor:new({x = 8, y = 14, length = 2})
+    this.last_bullet = time()
 
     return this
 end
@@ -22,7 +22,10 @@ function TheLady:update()
 
     self.main_rotor:update(self.x, self.y)
     self.tail_rotor:update(self.x, self.y)
-    self.bullets:update(self.x, self.y)
+
+    if self:bullet_cool_down() then
+        self:shoot(x, y)
+    end
 
     return outside
 end
@@ -32,8 +35,6 @@ function TheLady:draw()
 
     self.main_rotor:draw()
     self.tail_rotor:draw()
-
-    self.bullets:draw()
 end
 
 -- Returns true if the aircraft has gone outside the screen.
@@ -47,4 +48,19 @@ function TheLady:move()
     elseif btn(b.up) then self.y -= 1 end
 
     return (self.x < 0 or self.x > 127 or self.y < 0 or self.y > 127)
+end
+
+function TheLady:shoot(x, y)
+    if not(btn(buttons.o)) then
+        return
+    end
+
+    local b = Bullet:new(self.x + 8, self.y - 1, false);
+    bullets:add(b)
+    self.last_bullet = time()
+end
+
+-- Returns true if there has been sufficient time since the last bullet.
+function TheLady:bullet_cool_down()
+    return time() - self.last_bullet > 0.2
 end
