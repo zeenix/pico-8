@@ -31,7 +31,7 @@ function Aircraft:enemy_heli_small()
         {x = 3, y = 0, length = 1}, -- Tail rotor
     }
     local x = flr(rnd(128))
-    return Aircraft:new(x, -3, 1, 1, 2, rotor_props)
+    return Aircraft:new(x, -3, 1, 1, 32, rotor_props)
 end
 
 -- Returns true if the aircraft has gone outside the screen.
