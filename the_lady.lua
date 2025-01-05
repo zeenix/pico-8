@@ -18,13 +18,13 @@ end
 
 -- Returns true if the aircraft has gone outside the screen.
 function TheLady:update()
-    if self:move() then return true end
+    local outside = self:move()
 
     self.main_rotor:update(self.x, self.y)
     self.tail_rotor:update(self.x, self.y)
     self.bullets:update(self.x, self.y)
 
-    return false
+    return outside
 end
 
 function TheLady:draw()
