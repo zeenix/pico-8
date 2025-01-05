@@ -15,6 +15,8 @@ function _update()
     end
 
     if stat(54) == -1 then
+        -- The startup music has finished playing.
+        -- Start playing the background music.
         music(2, 200)
     end
 end
