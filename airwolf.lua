@@ -15,7 +15,7 @@ function _update()
     end
 
     if stat(54) == -1 then
-       music(2, 200)
+        music(2, 200)
     end
 end
 
