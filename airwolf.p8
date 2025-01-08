@@ -5,6 +5,7 @@ __lua__
 #include bullet.lua
 #include bullets.lua
 #include rotor.lua
+#include entity.lua
 #include enemy_aircraft.lua
 #include the_lady.lua
 #include airwolf.lua
