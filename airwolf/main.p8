@@ -8,7 +8,7 @@ __lua__
 #include entity.lua
 #include enemy_aircraft.lua
 #include the_lady.lua
-#include airwolf.lua
+#include main.lua
 
 __gfx__
 00000011110000000000000000000000000000000000000000000000bbbbbbbbbbbbbbbbbbb3333bbbbcccccbbbbbbbb00000000000000000000000000000000
