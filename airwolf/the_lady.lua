@@ -3,7 +3,7 @@ TheLady.__index = TheLady
 
 function TheLady:new()
     local this = setmetatable({}, TheLady)
-    this.entity = Entity:new(63, 111, 0, 2, 2, false)
+    this.entity = Entity:new(63, 111, 1, 2, 2, false)
     local bullet_props = {
         x_offset = 4,
         y_offset = -1,
@@ -47,4 +47,10 @@ function TheLady:move()
 
     local e = self.entity
     return (e.x < 0 or e.x > 127 or e.y < 0 or e.y > 127)
+end
+
+function TheLady:hit()
+    sfx(1)
+    self.entity.x = 63
+    self.entity.y = 111
 end

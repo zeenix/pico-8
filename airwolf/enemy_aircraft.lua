@@ -39,13 +39,26 @@ function EnemyAircraft:draw()
     self.tail_rotor:draw()
 end
 
--- Returns true if the aircraft has gone outside the screen.
+-- Returns true if the aircraft has gone outside the screen or gotten destroyed.
 function EnemyAircraft:move()
+    local x = self.entity.x
+    local y = self.entity.y
+
     -- Enemy aircraft just moves slowly down the screen but horizontally
     -- towards the player.
     self.entity.y += 0.5
     if self.entity.x < airwolf.entity.x then self.entity.x += 0.3
     elseif self.entity.x > airwolf.entity.x then self.entity.x -= 0.3 end
+
+    local victim = self.entity:collided_with()
+    if victim == "airwolf" then
+        airwolf:hit()
+        return true
+    elseif victim == "enemy" then
+        -- Just move the enemy aircraft back to its previous position.
+        self.entity.x = x
+        self.entity.y = y
+    end
 
     return (self.entity.x > 127 or self.entity.y > 127)
 end
