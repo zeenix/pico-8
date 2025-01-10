@@ -1,11 +1,10 @@
 Bullet = {}
 Bullet.__index = Bullet
 
-function Bullet:new(x, y, is_enemy)
+function Bullet:new(x, y, width, height, is_enemy)
     local this = setmetatable({}, Bullet)
-    this.x = x
-    this.y = y
-    this.is_enemy = is_enemy
+    local sprite_num = is_enemy and 65 or 64
+    this.entity = Entity:new(x, y, sprite_num, width, height, is_enemy)
 
     sfx(0)
 
@@ -14,16 +13,15 @@ end
 
 -- Returns true when the bullet is outside the screen.
 function Bullet:update()
-    if self.is_enemy then
-        self.y += 3
-        return (self.y > 127)
+    if self.entity.is_enemy then
+        self.entity.y += 3
+        return (self.entity.y > 127)
     else
-        self.y -= 3
-        return (self.y < 0)
+        self.entity.y -= 3
+        return (self.entity.y < 0)
     end
 end
 
 function Bullet:draw()
-    local color = self.is_enemy and colors.red or colors.black
-    pset(self.x, self.y, color)
+    self.entity:draw()
 end
