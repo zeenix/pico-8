@@ -3,9 +3,9 @@ version 42
 __lua__
 #include consts.lua
 #include bullet.lua
-#include bullets.lua
 #include rotor.lua
 #include entity.lua
+#include entities.lua
 #include shooter.lua
 #include enemy_aircraft.lua
 #include the_lady.lua

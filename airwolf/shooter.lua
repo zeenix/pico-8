@@ -23,7 +23,7 @@ function Shooter:shoot(entity)
     local p = self.bullet_props
     local e = entity
     local b = Bullet:new(e.x + p.x_offset, e.y + p.y_offset, p.width, p.height, e.is_enemy);
-    bullets:add(b)
+    entities:add_bullet(b)
     self.last_bullet = time()
 end
 

@@ -2,19 +2,14 @@ function _init()
     poke(0x5f36,0x2)
 
     airwolf = TheLady:new()
-    enemy = EnemyAircraft:new()
-    bullets = Bullets:new()
+    entities = Entities:new()
 
     music(0)
 end
 
 function _update()
     airwolf:update()
-    if enemy:update() then
-        -- For now just respawn the enemy.
-        enemy = EnemyAircraft:new()
-    end
-    bullets:update()
+    entities:update()
 
     if stat(54) == -1 then
         -- The startup music has finished playing.
@@ -26,8 +21,7 @@ end
 function _draw()
     map(0, 0, 0, 0, 16, 16)
     airwolf:draw()
-    enemy:draw()
-    bullets:draw()
+    entities:draw()
 
-    print(count(bullets.bullets), 123, 123, colors.white)
+    print(count(entities.bullets), 123, 123, colors.white)
 end
