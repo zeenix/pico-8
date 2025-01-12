@@ -9,7 +9,7 @@ function Entities:new()
     return this
 end
 
-function Entities:update(x, y)
+function Entities:update()
     -- Spawn an enemy aircraft every 1-4 seconds.
     if time() - self.enemy_spawn > 1 + flr(rnd(4)) then
         local e = EnemyAircraft:new()
