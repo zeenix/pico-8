@@ -22,6 +22,8 @@ function Entities:update()
             deli(self.entities, i)
         end
     end
+
+    assert(count(self.entities) < 100) -- Ensure entities are removed.
 end
 
 function Entities:draw()

@@ -22,6 +22,4 @@ function _draw()
     map(0, 0, 0, 0, 16, 16)
     airwolf:draw()
     entities:draw()
-
-    print(count(entities.entities), 123, 123, colors.white)
 end
