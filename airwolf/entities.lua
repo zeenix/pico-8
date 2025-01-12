@@ -18,9 +18,7 @@ function Entities:update()
     end
 
     for i, e in ipairs(self.entities) do
-        if e:update() then
-            deli(self.entities, i)
-        end
+        if (e:update()) deli(self.entities, i)
     end
 
     assert(count(self.entities) < 100) -- Ensure entities are removed.

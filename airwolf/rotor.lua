@@ -31,6 +31,6 @@ end
 
 function Rotor:draw()
     local coords = self.coords
-    if coords == nil then return end
+    if (coords == nil) return
     line(coords.x1, coords.y1, coords.x2, coords.y2, self.color)
 end

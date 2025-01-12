@@ -10,15 +10,11 @@ function Shooter:new(bullet_props)
 end
 
 function Shooter:update(entity)
-    if self:bullet_cool_down() then
-        self:shoot(entity)
-    end
+    if (self:bullet_cool_down()) self:shoot(entity)
 end
 
 function Shooter:shoot(entity)
-    if not(entity.is_enemy) and not(btn(buttons.o)) then
-        return
-    end
+    if (not(entity.is_enemy) and not(btn(buttons.o))) return
 
     local p = self.bullet_props
     local e = entity
