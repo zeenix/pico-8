@@ -23,5 +23,5 @@ function _draw()
     airwolf:draw()
     entities:draw()
 
-    print(count(entities.bullets), 123, 123, colors.white)
+    print(count(entities.entities), 123, 123, colors.white)
 end

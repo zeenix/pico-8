@@ -3,33 +3,33 @@ Entities.__index = Entities
 
 function Entities:new()
     local this = setmetatable({}, Entities)
-    this.bullets = {}
-    this.enemy = EnemyAircraft:new()
+    this.entities = {}
+    this.enemy_spawn = time() -- Last time an enemy was spawned.
 
     return this
 end
 
 function Entities:update(x, y)
-    if self.enemy:update() then
-        -- For now just respawn the enemy.
-        self.enemy = EnemyAircraft:new()
+    -- Spawn an enemy aircraft every 1-4 seconds.
+    if time() - self.enemy_spawn > 1 + flr(rnd(4)) then
+        local e = EnemyAircraft:new()
+        add(self.entities, e)
+        self.enemy_spawn = time()
     end
 
-    for i, b in ipairs(self.bullets) do
-        if b:update() then
-            deli(self.bullets, i)
+    for i, e in ipairs(self.entities) do
+        if e:update() then
+            deli(self.entities, i)
         end
     end
 end
 
 function Entities:draw()
-    self.enemy:draw()
-
-    for b in all(self.bullets) do
-        b:draw()
+    for e in all(self.entities) do
+        e:draw()
     end
 end
 
 function Entities:add_bullet(bullet)
-    add(self.bullets, bullet)
+    add(self.entities, bullet)
 end
