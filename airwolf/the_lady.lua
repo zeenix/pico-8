@@ -45,6 +45,10 @@ function TheLady:move()
     if btn(b.down) then self.entity.y += 1
     elseif btn(b.up) then self.entity.y -= 1 end
 
+    if self.entity:collided_with() == "enemy-bullet" then
+        self:hit()
+    end
+
     local e = self.entity
     return (e.x < 0 or e.x > 127 or e.y < 0 or e.y > 127)
 end
