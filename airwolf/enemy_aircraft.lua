@@ -58,6 +58,9 @@ function EnemyAircraft:move()
         -- Just move the enemy aircraft back to its previous position.
         self.entity.x = x
         self.entity.y = y
+    elseif victim == "airwolf-bullet" then
+        sfx(2)
+        return true
     end
 
     return (self.entity.x > 127 or self.entity.y > 127)
