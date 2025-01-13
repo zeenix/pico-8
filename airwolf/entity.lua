@@ -4,7 +4,7 @@ Entity.__index = Entity
 local id = 0 -- Used to assign unique IDs to entities.
 
 -- width+height in number of sprites (IOW multiple of 8 pixels)
-function Entity:new(x, y, sprite, width, height, is_enemy)
+function Entity:new(x, y, sprite, width, height, type)
     local this = setmetatable({}, Entity)
     id += 1
     this.id = id
@@ -13,7 +13,7 @@ function Entity:new(x, y, sprite, width, height, is_enemy)
     this.sprite_num = sprite
     this.width = width
     this.height = height
-    this.is_enemy = is_enemy
+    this.type = type
 
     return this
 end
@@ -26,12 +26,7 @@ function Entity:collided_with()
     if self:collided(airwolf.entity) then return "airwolf"
     else
         for e in all(entities.entities) do
-            local e = e.entity
-            if self:collided(e) then
-                if e.sprite_num == 64 then return "airwolf-bullet"
-                elseif e.sprite_num == 65 then return "enemy-bullet"
-                else return "enemy" end
-            end
+            if (self:collided(e.entity)) return e.entity.type
         end
     end
 end
@@ -46,4 +41,8 @@ function Entity:collided(other)
            e.x + (e.width * 8) > o.x and
            e.y < o.y + (o.height * 8) and
            e.y + (e.height * 8) > o.y
+end
+
+function Entity:is_enemy()
+    return (sub(self.type, 1, 5) == "enemy")
 end

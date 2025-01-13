@@ -14,11 +14,12 @@ function Shooter:update(entity)
 end
 
 function Shooter:shoot(entity)
-    if (not(entity.is_enemy) and not(btn(buttons.o))) return
+    if (not(entity:is_enemy()) and not(btn(buttons.o))) return
 
     local p = self.bullet_props
     local e = entity
-    local b = Bullet:new(e.x + p.x_offset, e.y + p.y_offset, p.width, p.height, e.is_enemy);
+    local type = (entity:is_enemy()) and "enemy-bullet" or "airwolf-bullet"
+    local b = Bullet:new(e.x + p.x_offset, e.y + p.y_offset, p.width, p.height, type);
     entities:add_bullet(b)
     self.last_bullet = time()
 end
