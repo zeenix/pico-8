@@ -22,6 +22,4 @@ function Bullet:update()
     end
 end
 
-function Bullet:draw()
-    self.entity:draw()
-end
+function Bullet:draw() self.entity:draw() end

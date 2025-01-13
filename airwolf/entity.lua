@@ -18,9 +18,7 @@ function Entity:new(x, y, sprite, width, height, type)
     return this
 end
 
-function Entity:draw()
-    spr(self.sprite_num, self.x, self.y, self.width, self.height)
-end
+function Entity:draw() spr(self.sprite_num, self.x, self.y, self.width, self.height) end
 
 function Entity:collided_with()
     for e in all(entities.entities) do
@@ -40,6 +38,4 @@ function Entity:collided(other)
            e.y + (e.height * 8) > o.y
 end
 
-function Entity:is_enemy()
-    return (sub(self.type, 1, 5) == "enemy")
-end
+function Entity:is_enemy() return (sub(self.type, 1, 5) == "enemy") end

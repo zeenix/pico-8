@@ -30,8 +30,6 @@ function Entities:draw()
     end
 end
 
-function Entities:add_bullet(bullet)
-    add(self.entities, bullet)
-end
+function Entities:add_bullet(bullet) add(self.entities, bullet) end
 
 function Entities:airwolf() return self.entities[1] end
