@@ -47,6 +47,7 @@ function EnemyAircraft:move()
     -- Enemy aircraft just moves slowly down the screen but horizontally
     -- towards the player.
     self.entity.y += 0.5
+    local airwolf = entities:airwolf()
     if self.entity.x < airwolf.entity.x then self.entity.x += 0.3
     elseif self.entity.x > airwolf.entity.x then self.entity.x -= 0.3 end
 

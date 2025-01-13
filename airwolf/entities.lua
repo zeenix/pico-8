@@ -3,7 +3,7 @@ Entities.__index = Entities
 
 function Entities:new()
     local this = setmetatable({}, Entities)
-    this.entities = {}
+    this.entities = { TheLady:new() }
     this.enemy_spawn = time() -- Last time an enemy was spawned.
 
     return this
@@ -33,3 +33,5 @@ end
 function Entities:add_bullet(bullet)
     add(self.entities, bullet)
 end
+
+function Entities:airwolf() return self.entities[1] end

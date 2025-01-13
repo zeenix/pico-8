@@ -23,11 +23,8 @@ function Entity:draw()
 end
 
 function Entity:collided_with()
-    if self:collided(airwolf.entity) then return "airwolf"
-    else
-        for e in all(entities.entities) do
-            if (self:collided(e.entity)) return e.entity.type
-        end
+    for e in all(entities.entities) do
+        if (self:collided(e.entity)) return e.entity.type
     end
 end
 
