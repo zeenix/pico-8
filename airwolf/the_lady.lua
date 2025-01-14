@@ -3,13 +3,11 @@ TheLady.__index = TheLady
 
 function TheLady:new()
     local this = setmetatable({}, TheLady)
-    this.entity = Entity:new(63, 111, 1, 2, 2, "airwolf")
+    this.entity = Entity:new(63, 111, 1, "airwolf", 2, 2)
     local bullet_props = {
         x_offset = 4,
         y_offset = -1,
         interval = 0.2,
-        width = 1,
-        height = 1,
     }
     this.shooter = Shooter:new(bullet_props)
     this.main_rotor = Rotor:new({x = 8, y = 6, length = 6})

@@ -4,16 +4,16 @@ Entity.__index = Entity
 local id = 0 -- Used to assign unique IDs to entities.
 
 -- width+height in number of sprites (IOW multiple of 8 pixels)
-function Entity:new(x, y, sprite, width, height, type)
+function Entity:new(x, y, sprite, type, width, height)
     local this = setmetatable({}, Entity)
     id += 1
     this.id = id
     this.x = x
     this.y = y
     this.sprite_num = sprite
-    this.width = width
-    this.height = height
     this.type = type
+    this.width = width or 1
+    this.height = height or 1
 
     return this
 end
