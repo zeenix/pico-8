@@ -4,7 +4,8 @@ TheLady.__index = TheLady
 function TheLady:new()
     local this = setmetatable({}, TheLady)
     local sprite = { num = 1, w = 2, h = 2 }
-    this.entity = Entity:new(63, 111, sprite, "airwolf")
+    local bbox = { x = 2, y = 0, w = 10, h = 16 }
+    this.entity = Entity:new(63, 111, sprite, "airwolf", bbox)
     local bullet_props = {
         x_offset = 4,
         y_offset = -1,

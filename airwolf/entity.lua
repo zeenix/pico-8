@@ -3,7 +3,7 @@ Entity.__index = Entity
 
 local id = 0 -- Used to assign unique IDs to entities.
 
-function Entity:new(x, y, sprite, type)
+function Entity:new(x, y, sprite, type, bbox)
     local this = setmetatable({}, Entity)
     id += 1
     this.id = id
@@ -11,6 +11,7 @@ function Entity:new(x, y, sprite, type)
     this.y = y
     this.sprite = sprite
     this.type = type
+    this.bbox = bbox
 
     return this
 end
@@ -24,15 +25,25 @@ function Entity:collided_with()
 end
 
 function Entity:collided(other)
-    local e = self
-    local o = other
+    if (self.id == other.id) return false -- Skip self.
 
-    if (e.id == o.id) return false -- Skip self.
+    local e = {
+        x = self.x + self.bbox.x,
+        y = self.y + self.bbox.y,
+        w = self.bbox.w,
+        h = self.bbox.h,
+    }
+    local o = {
+        x = other.x + other.bbox.x,
+        y = other.y + other.bbox.y,
+        w = other.bbox.w,
+        h = other.bbox.h,
+    }
 
-    return e.x < o.x + (o.sprite.w * 8) and
-           e.x + (e.sprite.w * 8) > o.x and
-           e.y < o.y + (o.sprite.h * 8) and
-           e.y + (e.sprite.h * 8) > o.y
+    return e.x < o.x + o.w and
+           e.x + e.w > o.x and
+           e.y < o.y + o.h and
+           e.y + e.h > o.y
 end
 
 function Entity:is_enemy() return (sub(self.type, 1, 5) == "enemy") end
