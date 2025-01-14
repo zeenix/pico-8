@@ -5,13 +5,16 @@ function EnemyAircraft:new()
     local this = setmetatable({}, EnemyAircraft)
 
     local x = flr(rnd(128))
-    this.entity = Entity:new(x, -3, 32, "enemy")
+    local sprite = { num = 32, w = 1, h = 1 }
+    this.entity = Entity:new(x, -3, sprite, "enemy")
     -- Longer duration for enemy bullets because they shoot continuously &
     -- automatically.
     local bullet_props = {
         x_offset = 2,
         y_offset = 4,
         interval = 1,
+        sw = 1,
+        sh = 1,
     }
     this.shooter = Shooter:new(bullet_props)
     this.main_rotor = Rotor:new({x = 4, y = 4, length = 2})

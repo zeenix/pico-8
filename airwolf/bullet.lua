@@ -1,10 +1,14 @@
 Bullet = {}
 Bullet.__index = Bullet
 
-function Bullet:new(x, y, type, width, height)
+function Bullet:new(x, y, type, sw, sh)
     local this = setmetatable({}, Bullet)
-    local sprite_num = (type == "enemy-bullet") and 65 or 64
-    this.entity = Entity:new(x, y, sprite_num, type, width, height)
+    local sprite = {
+        num = (type == "enemy-bullet") and 65 or 64,
+        w = sw,
+        h = sh,
+    }
+    this.entity = Entity:new(x, y, sprite, type)
 
     sfx(0)
 

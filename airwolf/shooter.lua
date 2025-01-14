@@ -17,7 +17,7 @@ function Shooter:shoot(entity)
     local p = self.bprops
     local e = entity
     local type = (entity:is_enemy()) and "enemy-bullet" or "airwolf-bullet"
-    local b = Bullet:new(e.x + p.x_offset, e.y + p.y_offset, type, p.width, p.height);
+    local b = Bullet:new(e.x + p.x_offset, e.y + p.y_offset, type, p.sw, p.sh);
     entities:add_bullet(b)
     self.last_bullet = time()
 end
