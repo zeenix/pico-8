@@ -8,9 +8,10 @@ end
 function _update()
     entities:update()
 
-    if scene == "start" then
+    if scene == "start" or scene == "game-over" then
         if btnp(buttons.o) then
             scene = "game"
+            entities = Entities:new()
             music(0)
         end
     elseif scene == "game" then
@@ -27,7 +28,11 @@ function _draw()
 
     entities:draw()
 
-    if (scene == "start") print("Press O to start", 30, 70, colors.white)
+    if scene == "start" then print("press o to start", 30, 70, colors.white)
+    elseif scene == "game-over" then
+        print("game over", 40, 70, colors.white)
+        print("press o to restart", 30, 80, colors.white)
+    end
 end
 
 function game_over()
