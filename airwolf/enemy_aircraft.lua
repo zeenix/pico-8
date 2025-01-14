@@ -26,7 +26,10 @@ end
 
 -- Returns true if the aircraft has gone outside the screen.
 function EnemyAircraft:update()
-    local outside = self:move()
+    local outside = false
+    if scene == "game" then
+        outside = self:move()
+    end
 
     self.shooter:update(self.entity)
     self.main_rotor:update(self.entity)

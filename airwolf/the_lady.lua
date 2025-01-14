@@ -22,7 +22,10 @@ end
 
 -- Returns true if the aircraft has gone outside the screen.
 function TheLady:update()
-    local outside = self:move()
+    local outside = false
+    if scene == "game" then
+        outside = self:move()
+    end
 
     self.shooter:update(self.entity)
     self.main_rotor:update(self.entity)
@@ -59,4 +62,7 @@ function TheLady:hit()
     sfx(1)
     self.entity.x = 63
     self.entity.y = 111
+
+    -- TODO: Should be able to take a few hits before game over.
+    game_over()
 end

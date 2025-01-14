@@ -12,6 +12,7 @@ end
 function Shooter:update(entity) if (self:bullet_cool_down()) self:shoot(entity) end
 
 function Shooter:shoot(entity)
+    if (scene != "game") return
     if (not(entity:is_enemy()) and not(btn(buttons.o))) return
 
     local p = self.bprops
