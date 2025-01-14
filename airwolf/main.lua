@@ -26,6 +26,8 @@ function _draw()
     map(0, 0, 0, 0, 16, 16)
 
     entities:draw()
+
+    if (scene == "start") print("Press O to start", 30, 70, colors.white)
 end
 
 function game_over()
