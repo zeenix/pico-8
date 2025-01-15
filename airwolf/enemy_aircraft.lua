@@ -66,6 +66,7 @@ function EnemyAircraft:move()
         self.entity.y = y
     elseif victim == "airwolf-bullet" then
         sfx(2)
+        score += 1
         return true
     end
 
