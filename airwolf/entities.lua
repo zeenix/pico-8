@@ -10,8 +10,8 @@ function Entities:new()
 end
 
 function Entities:update()
-    -- Spawn an enemy aircraft every 2-6 seconds in game mode.
-    if scene == "game" and time() - self.enemy_spawn > 2 + flr(rnd(6)) then
+    -- Spawn an enemy aircraft every 1-4 seconds in game mode.
+    if scene == "game" and time() - self.enemy_spawn > 1 + flr(rnd(3)) then
         local e = EnemyAircraft:new()
         add(self.entities, e)
         self.enemy_spawn = time()
