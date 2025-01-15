@@ -20,10 +20,10 @@ end
 -- Returns true when the bullet is outside the screen.
 function Bullet:update()
     if self.entity:is_enemy() then
-        self.entity.y += 3
+        self.entity.y += 2
         return (self.entity.y > 127)
     else
-        self.entity.y -= 3
+        self.entity.y -= 2
         return (self.entity.y < 0)
     end
 end

@@ -9,7 +9,7 @@ function TheLady:new()
     local bullet_props = {
         x_offset = 4,
         y_offset = -1,
-        interval = 0.2,
+        interval = 0.4,
         sw = 1,
         sh = 1,
     }

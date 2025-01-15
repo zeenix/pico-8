@@ -53,8 +53,8 @@ function EnemyAircraft:move()
     -- towards the player.
     self.entity.y += 0.5
     local airwolf = entities:airwolf()
-    if self.entity.x < airwolf.entity.x then self.entity.x += 0.3
-    elseif self.entity.x > airwolf.entity.x then self.entity.x -= 0.3 end
+    if self.entity.x < airwolf.entity.x then self.entity.x += 0.2
+    elseif self.entity.x > airwolf.entity.x then self.entity.x -= 0.2 end
 
     local victim = self.entity:collided_with()
     if victim == "airwolf" then

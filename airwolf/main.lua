@@ -5,7 +5,7 @@ function _init()
     scene = "start"
 end
 
-function _update()
+function _update60()
     entities:update()
 
     if scene == "start" or scene == "game-over" then

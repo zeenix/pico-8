@@ -13,7 +13,7 @@ function Rotor:new(props)
 end
 
 function Rotor:update(entity)
-    local speed = 4
+    local speed = 1
 
     self.angle += speed
     -- Keep within 0 to 2*pi
