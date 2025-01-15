@@ -40,22 +40,22 @@ function TheLady:draw()
     self.tail_rotor:draw()
 end
 
--- Returns true if the aircraft has gone outside the screen.
 function TheLady:move()
     local b = buttons
 
-    if btn(b.left) then self.entity.x -= 1
-    elseif btn(b.right) then self.entity.x += 1 end
+    local e = self.entity
+    local box = e.bbox
+    if e.x > 0 and btn(b.left) then self.entity.x -= 1
+    elseif (e.x + box.x + box.w) < 126 and btn(b.right) then self.entity.x += 1 end
 
-    if btn(b.down) then self.entity.y += 1
-    elseif btn(b.up) then self.entity.y -= 1 end
+    if (e.y + box.y + box.h) < 128 and btn(b.down) then self.entity.y += 1
+    elseif e.y > 0 and btn(b.up) then self.entity.y -= 1 end
 
     if self.entity:collided_with() == "enemy-bullet" then
         self:hit()
     end
 
-    local e = self.entity
-    return (e.x < 0 or e.x > 127 or e.y < 0 or e.y > 127)
+    return false
 end
 
 function TheLady:hit()
