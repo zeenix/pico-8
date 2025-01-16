@@ -5,6 +5,7 @@ function _init()
     scene = "start"
     score = 0
     got_to = 3 -- Game over time out.
+    hscore = 0 -- High score.
 end
 
 function _update60()
@@ -42,10 +43,18 @@ function _draw()
     if scene == "game" or scene == "game-over" then
         print(score, 1, 123, colors.white)
     end
+
+    if hscore > 0 then
+        local digits = 128 - 4 * #tostr(hscore)
+        print(hscore, digits, 123, colors.white)
+    end
 end
 
 function game_over()
     scene = "game-over"
     music(-1)
     got = time() -- Game over time.
+    if score > hscore then
+        hscore = score
+    end
 end
