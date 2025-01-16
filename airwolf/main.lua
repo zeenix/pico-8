@@ -4,14 +4,14 @@ function _init()
     entities = Entities:new()
     scene = "start"
     score = 0
-    got_to = 3 -- Game over time out.
+    go_to = 3 -- Game over time out.
     hscore = 0 -- High score.
 end
 
 function _update60()
     entities:update()
 
-    if scene == "start" or (scene == "game-over" and time() > got + got_to)  then
+    if scene == "start" or (scene == "game-over" and time() > got + go_to)  then
         if btnp(buttons.o) then
             scene = "game"
             score = 0
@@ -35,7 +35,7 @@ function _draw()
     if scene == "start" then print("press o to start", 30, 70, colors.white)
     elseif scene == "game-over" then
         print("game over", 40, 70, colors.white)
-        if time() > got + got_to then
+        if time() > got + go_to then
             print("press o to restart", 30, 80, colors.white)
         end
     end
