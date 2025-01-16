@@ -4,13 +4,13 @@ Bullet.__index = Bullet
 function Bullet:new(x, y, type, sw, sh)
     local this = setmetatable({}, Bullet)
     local e = (type == "enemy-bullet")
-    local bbox = e and { x = 3, y = 2, w = 1, h = 6 } or { x = 1, y = 0, w = 6, h = 8 }
+    local size = e and { w = 1, h = 6 } or { w = 6, h = 8 }
     local sprite = {
         num = e and 65 or 64,
         w = sw,
         h = sh,
     }
-    this.entity = Entity:new(x, y, sprite, type, bbox)
+    this.entity = Entity:new(x, y, sprite, type, size)
 
     sfx(0)
 

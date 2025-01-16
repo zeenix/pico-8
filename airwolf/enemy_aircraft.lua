@@ -4,21 +4,21 @@ EnemyAircraft.__index = EnemyAircraft
 function EnemyAircraft:new()
     local this = setmetatable({}, EnemyAircraft)
 
-    local x = flr(rnd(128))
+    local x = flr(rnd(127))
     local sprite = { num = 32, w = 1, h = 1 }
-    local bbox = { x = 1, y = 0, w = 6, h = 8 }
-    this.entity = Entity:new(x, -3, sprite, "enemy", bbox)
+    local size = { w = 6, h = 8 }
+    this.entity = Entity:new(x, 0, sprite, "enemy", size)
     -- Longer duration for enemy bullets because they shoot continuously &
     -- automatically.
     local bullet_props = {
-        x_offset = 2,
+        x_offset = 3,
         y_offset = 4,
         interval = 1,
         sw = 1,
         sh = 1,
     }
     this.shooter = Shooter:new(bullet_props)
-    this.main_rotor = Rotor:new({x = 4, y = 4, length = 2})
+    this.main_rotor = Rotor:new({x = 3, y = 4, length = 2})
     this.tail_rotor = Rotor:new({x = 3, y = 0, length = 1})
 
     return this
@@ -70,5 +70,5 @@ function EnemyAircraft:move()
         return true
     end
 
-    return (self.entity.x > 127 or self.entity.y > 127)
+    return (self.entity.x < 0 or self.entity.x > 127 or self.entity.y > 127)
 end

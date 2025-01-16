@@ -3,7 +3,7 @@ Entity.__index = Entity
 
 local id = 0 -- Used to assign unique IDs to entities.
 
-function Entity:new(x, y, sprite, type, bbox)
+function Entity:new(x, y, sprite, type, size)
     local this = setmetatable({}, Entity)
     id += 1
     this.id = id
@@ -11,7 +11,7 @@ function Entity:new(x, y, sprite, type, bbox)
     this.y = y
     this.sprite = sprite
     this.type = type
-    this.bbox = bbox
+    this.size = size
 
     return this
 end
@@ -28,16 +28,16 @@ function Entity:collided(other)
     if (self.id == other.id) return false -- Skip self.
 
     local e = {
-        x = self.x + self.bbox.x,
-        y = self.y + self.bbox.y,
-        w = self.bbox.w,
-        h = self.bbox.h,
+        x = self.x,
+        y = self.y,
+        w = self.size.w,
+        h = self.size.h,
     }
     local o = {
-        x = other.x + other.bbox.x,
-        y = other.y + other.bbox.y,
-        w = other.bbox.w,
-        h = other.bbox.h,
+        x = other.x,
+        y = other.y,
+        w = other.size.w,
+        h = other.size.h,
     }
 
     return e.x < o.x + o.w and

@@ -4,18 +4,18 @@ TheLady.__index = TheLady
 function TheLady:new()
     local this = setmetatable({}, TheLady)
     local sprite = { num = 1, w = 2, h = 2 }
-    local bbox = { x = 2, y = 0, w = 10, h = 16 }
-    this.entity = Entity:new(63, 111, sprite, "airwolf", bbox)
+    local size = { w = 10, h = 16 }
+    this.entity = Entity:new(63, 111, sprite, "airwolf", size)
     local bullet_props = {
-        x_offset = 4,
+        x_offset = 3,
         y_offset = -1,
         interval = 0.4,
         sw = 1,
         sh = 1,
     }
     this.shooter = Shooter:new(bullet_props)
-    this.main_rotor = Rotor:new({x = 8, y = 6, length = 6})
-    this.tail_rotor = Rotor:new({x = 8, y = 14, length = 2})
+    this.main_rotor = Rotor:new({x = 6, y = 6, length = 6})
+    this.tail_rotor = Rotor:new({x = 6, y = 14, length = 2})
 
     return this
 end
@@ -44,11 +44,10 @@ function TheLady:move()
     local b = buttons
 
     local e = self.entity
-    local box = e.bbox
-    if e.x > 0 and btn(b.left) then self.entity.x -= 1
-    elseif (e.x + box.x + box.w) < 126 and btn(b.right) then self.entity.x += 1 end
+    if e.x > -1 and btn(b.left) then self.entity.x -= 1
+    elseif (e.x + e.size.w) < 126 and btn(b.right) then self.entity.x += 1 end
 
-    if (e.y + box.y + box.h) < 128 and btn(b.down) then self.entity.y += 1
+    if (e.y + e.size.h) < 128 and btn(b.down) then self.entity.y += 1
     elseif e.y > 0 and btn(b.up) then self.entity.y -= 1 end
 
     if self.entity:collided_with() == "enemy-bullet" then
