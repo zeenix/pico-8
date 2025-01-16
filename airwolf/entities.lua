@@ -18,7 +18,15 @@ function Entities:update()
     end
 
     for i, e in ipairs(self.entities) do
-        if (e:update()) deli(self.entities, i)
+        if (e:update()) then
+            if e.entity.type == "enemy" then
+                -- More points for letting an enemy aircraft go.
+                local incr = e.alive and 10 or 1
+                score += incr
+            end
+
+            deli(self.entities, i)
+        end
     end
 
     assert(count(self.entities) < 100) -- Ensure entities are removed.

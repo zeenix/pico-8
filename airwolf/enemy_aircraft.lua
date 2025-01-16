@@ -20,6 +20,7 @@ function EnemyAircraft:new()
     this.shooter = Shooter:new(bullet_props)
     this.main_rotor = Rotor:new({x = 3, y = 4, length = 2})
     this.tail_rotor = Rotor:new({x = 3, y = 0, length = 1})
+    this.alive = true
 
     return this
 end
@@ -66,7 +67,7 @@ function EnemyAircraft:move()
         self.entity.y = y
     elseif victim == "airwolf-bullet" then
         sfx(2)
-        score += 1
+        self.alive = false
         return true
     end
 
