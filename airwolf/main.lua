@@ -1,6 +1,7 @@
 function _init()
     poke(0x5f36,0x2)
 
+    smap = SMap:new()
     entities = Entities:new()
     scene = "start"
     score = 0
@@ -9,6 +10,7 @@ function _init()
 end
 
 function _update60()
+    smap:update()
     entities:update()
 
     if scene == "start" or (scene == "game-over" and time() > got + go_to)  then
@@ -16,6 +18,7 @@ function _update60()
             scene = "game"
             score = 0
             entities = Entities:new()
+            smap = SMap:new()
             music(0)
         end
     elseif scene == "game" then
@@ -28,8 +31,7 @@ function _update60()
 end
 
 function _draw()
-    map(0, 0, 0, 0, 16, 16)
-
+    smap:draw()
     entities:draw()
 
     if scene == "start" then print("press o to start", 30, 70, colors.white)
@@ -53,6 +55,7 @@ end
 function game_over()
     scene = "game-over"
     music(-1)
+    smap:stop_scroll()
     got = time() -- Game over time.
     if score > hscore then
         hscore = score
