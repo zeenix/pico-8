@@ -47,8 +47,8 @@ function _draw()
     end
 
     if hscore > 0 then
-        local digits = 128 - 4 * #tostr(hscore)
-        print(hscore, digits, 123, colors.white)
+        local x = 128 - 4 * #tostr(hscore)
+        print(hscore, x, 123, colors.white)
     end
 end
 
