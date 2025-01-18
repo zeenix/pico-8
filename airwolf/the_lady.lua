@@ -41,18 +41,48 @@ function TheLady:draw()
 end
 
 function TheLady:move()
-    local b = buttons
-
     local e = self.entity
-    if e.x > -1 and btn(b.left) then self.entity.x -= 0.7
-    elseif (e.x + e.size.w) < 126 and btn(b.right) then self.entity.x += 0.7 end
 
-    if (e.y + e.size.h) < 128 and btn(b.down) then self.entity.y += 0.7
-    elseif e.y > 0 and btn(b.up) then self.entity.y -= 0.7 end
+    local lpossible = e.x > -1
+    local rpossible = (e.x + e.size.w) < 126
+    local upossible = e.y > 0
+    local dpossible = (e.y + e.size.h) < 128
+    local lupossible = lpossible and upossible
+    local ldpossible = lpossible and dpossible
+    local rupossible = rpossible and upossible
+    local rdpossible = rpossible and dpossible
 
-    if self.entity:collided_with() == "enemy-bullet" then
-        self:hit()
+    local d = nil
+    local btns = buttons
+    local b = btn()
+    if b & btns.l_u == btns.l_u then
+        if lupossible then d = "left-up"
+        elseif lpossible then d = "left"
+        elseif upossible then d = "up" end
+    elseif b & btns.l_d == btns.l_d then
+        if ldpossible then d = "left-down"
+        elseif lpossible then d = "left"
+        elseif dpossible then d = "down" end
+    elseif b & btns.r_u == btns.r_u then
+        if rupossible then d = "right-up"
+        elseif rpossible then d = "right"
+        elseif upossible then d = "up" end
+    elseif b & btns.r_d == btns.r_d then
+        if rdpossible then d = "right-down"
+        elseif rpossible then d = "right"
+        elseif dpossible then d = "down" end
+    elseif b & btns.l == btns.l and lpossible then d = "left"
+    elseif b & btns.r == btns.r and rpossible then d = "right"
+    elseif b & btns.u == btns.u and upossible then d = "up"
+    elseif b & btns.d == btns.d and dpossible then d = "down"
     end
+
+    local on_collision = function(victim)
+        if victim == "enemy-bullet" then
+            self:hit()
+        end
+    end
+    self.entity:move(d, 0.7, on_collision)
 
     return false
 end

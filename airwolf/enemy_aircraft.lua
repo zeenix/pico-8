@@ -47,29 +47,31 @@ end
 
 -- Returns true if the aircraft has gone outside the screen or gotten destroyed.
 function EnemyAircraft:move()
-    local x = self.entity.x
-    local y = self.entity.y
-
+    local e = self.entity
+    local x = e.x
+    local y = e.y
     -- Enemy aircraft just moves slowly down the screen but horizontally
     -- towards the player.
-    self.entity.y += 0.5
+    local d = nil
     local airwolf = entities:airwolf()
-    if self.entity.x < airwolf.entity.x then self.entity.x += 0.2
-    elseif self.entity.x > airwolf.entity.x then self.entity.x -= 0.2 end
+    if e.x < airwolf.entity.x then d = "right-down"
+    elseif e.x > airwolf.entity.x then d = "left-down" end
 
-    local victim = self.entity:collided_with()
-    if victim == "airwolf" then
-        airwolf:hit()
-        return true
-    elseif victim == "enemy" then
-        -- Just move the enemy aircraft back to its previous position.
-        self.entity.x = x
-        self.entity.y = y
-    elseif victim == "airwolf-bullet" then
-        sfx(2)
-        self.alive = false
-        return true
+    local on_collision = function(victim)
+        if sub(victim, 1, 7) == "airwolf" then
+            if (#victim == 7) airwolf:hit()
+
+            sfx(2)
+            self.alive = false
+        elseif victim == "enemy" then
+            -- Just move the enemy aircraft back to its previous position.
+            e.x = x
+            e.y = y
+        end
     end
 
-    return (self.entity.x < 0 or self.entity.x > 127 or self.entity.y > 127)
+    e:move(d, 0.3, on_collision)
+
+    --return (not e.alive) or e.x < 0 or e.x > 127 or e.y > 127
+    return (not self.alive) or e.x < 0 or e.x > 127 or e.y > 127
 end

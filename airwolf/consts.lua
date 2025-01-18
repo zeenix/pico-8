@@ -1,10 +1,15 @@
 pi = 3.14159265359
 
 buttons = {
-    left = 0,
-    right = 1,
-    up = 2,
-    down = 3,
+    l = 0B000001, -- Left
+    r = 0B000010, -- Right
+    u = 0B000100, -- Up
+    d = 0B001000, -- Down
+
+    l_u = 0B000101, -- Left and up
+    r_u = 0B000110, -- Right and up
+    l_d = 0B001001, -- Left and down
+    r_d = 0B001010, -- Right and down
 
     o = 4,
     x = 5,

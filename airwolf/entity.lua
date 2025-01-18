@@ -16,7 +16,43 @@ function Entity:new(x, y, sprite, type, size)
     return this
 end
 
-function Entity:draw() spr(self.sprite.num, self.x, self.y, self.sprite.w, self.sprite.h) end
+function Entity:draw()
+    -- ensure the entity is always at the middle of the pixel to avoid the
+    -- "cobblestone effect" in case of diagonal movements.
+    local x = flr(self.x) + 0.5
+    local y = flr(self.y) + 0.5
+    spr(self.sprite.num, x, y, self.sprite.w, self.sprite.h)
+end
+
+function Entity:move(dir, speed, on_collision)
+    if dir == nil then return end
+
+    local e = self
+
+    if dir == "left" then e.x -= speed
+    elseif dir == "right" then e.x += speed
+    elseif dir == "up" then e.y -= speed
+    elseif dir == "down" then e.y += speed
+    elseif dir == "left-up" then
+        e.x -= speed
+        e.y -= speed
+    elseif dir == "right-up" then
+        e.x += speed
+        e.y -= speed
+    elseif dir == "left-down" then
+        e.x -= speed
+        e.y += speed
+    elseif dir == "right-down" then
+        e.x += speed
+        e.y += speed
+    end
+
+    local airwolf = entities:airwolf()
+    local victim = e:collided_with()
+    if victim != nil then
+        on_collision(victim)
+    end
+end
 
 function Entity:collided_with()
     for e in all(entities.entities) do
