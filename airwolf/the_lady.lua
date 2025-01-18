@@ -59,8 +59,6 @@ end
 
 function TheLady:hit()
     sfx(1)
-    self.entity.x = 63
-    self.entity.y = 111
 
     -- TODO: Should be able to take a few hits before game over.
     game_over()

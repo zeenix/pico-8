@@ -54,6 +54,7 @@ end
 
 function game_over()
     scene = "game-over"
+    entities:remove_airwolf()
     music(-1)
     smap:stop_scroll()
     got = time() -- Game over time.

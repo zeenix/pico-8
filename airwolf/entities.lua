@@ -41,3 +41,5 @@ end
 function Entities:add_bullet(bullet) add(self.entities, bullet) end
 
 function Entities:airwolf() return self.entities[1] end
+
+function Entities:remove_airwolf() deli(self.entities, 1) end
