@@ -43,12 +43,12 @@ function _draw()
     end
 
     if scene == "game" or scene == "game-over" then
-        print(score, 1, 123, colors.white)
+        print(score, 1, 122, colors.white)
     end
 
     if hscore > 0 then
         local x = 128 - 4 * #tostr(hscore)
-        print(hscore, x, 123, colors.white)
+        print(hscore, x, 122, colors.white)
     end
 end
 
