@@ -7,7 +7,7 @@ function EnemyAircraft:new()
     local x = flr(rnd(127))
     local sprite = { num = 32, w = 1, h = 1 }
     local size = { w = 6, h = 8 }
-    this.entity = Entity:new(x, 0, sprite, "enemy", size)
+    this.entity = Entity:new(x, -8, sprite, "enemy", size)
     -- Longer duration for enemy bullets because they shoot continuously &
     -- automatically.
     local bullet_props = {
