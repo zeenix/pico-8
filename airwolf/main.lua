@@ -19,13 +19,13 @@ function _update60()
             score = 0
             entities = Entities:new()
             smap = SMap:new()
-            music(0)
+            music(0, nil, 7)
+            start_time = time()
         end
     elseif scene == "game" then
-        if stat(54) == -1 then
-            -- The startup music has finished playing.
-            -- Start playing the background music.
-            music(2, 200)
+        if time() - start_time > 30 then
+            -- Stop the music after 30s.
+            music(-1, 5000)
         end
     end
 end
