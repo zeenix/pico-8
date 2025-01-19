@@ -1,15 +1,16 @@
 pi = 3.14159265359
 
 buttons = {
-    l = 0B000001, -- Left
-    r = 0B000010, -- Right
-    u = 0B000100, -- Up
-    d = 0B001000, -- Down
-
-    l_u = 0B000101, -- Left and up
-    r_u = 0B000110, -- Right and up
-    l_d = 0B001001, -- Left and down
-    r_d = 0B001010, -- Right and down
+    mask = {
+        left       = 0B000001,
+        right      = 0B000010,
+        up         = 0B000100,
+        down       = 0B001000,
+        left_up    = 0B000101,
+        right_up   = 0B000110,
+        left_down  = 0B001001,
+        right_down = 0B001010,
+    },
 
     o = 4,
     x = 5,

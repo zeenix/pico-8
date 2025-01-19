@@ -43,38 +43,38 @@ end
 function TheLady:move()
     local e = self.entity
 
-    local lpossible = e.x > -1
-    local rpossible = (e.x + e.size.w) < 126
-    local upossible = e.y > 0
-    local dpossible = (e.y + e.size.h) < 128
-    local lupossible = lpossible and upossible
-    local ldpossible = lpossible and dpossible
-    local rupossible = rpossible and upossible
-    local rdpossible = rpossible and dpossible
+    local can_l = e.x > -1
+    local can_r = (e.x + e.size.w) < 126
+    local can_u = e.y > 0
+    local can_d = (e.y + e.size.h) < 128
+    local can_lu = can_l and can_u
+    local can_ld = can_l and can_d
+    local can_ru = can_r and can_u
+    local can_rd = can_r and can_d
 
     local d = nil
-    local btns = buttons
+    local m = buttons.mask
     local b = btn()
-    if b & btns.l_u == btns.l_u then
-        if lupossible then d = "left-up"
-        elseif lpossible then d = "left"
-        elseif upossible then d = "up" end
-    elseif b & btns.l_d == btns.l_d then
-        if ldpossible then d = "left-down"
-        elseif lpossible then d = "left"
-        elseif dpossible then d = "down" end
-    elseif b & btns.r_u == btns.r_u then
-        if rupossible then d = "right-up"
-        elseif rpossible then d = "right"
-        elseif upossible then d = "up" end
-    elseif b & btns.r_d == btns.r_d then
-        if rdpossible then d = "right-down"
-        elseif rpossible then d = "right"
-        elseif dpossible then d = "down" end
-    elseif b & btns.l == btns.l and lpossible then d = "left"
-    elseif b & btns.r == btns.r and rpossible then d = "right"
-    elseif b & btns.u == btns.u and upossible then d = "up"
-    elseif b & btns.d == btns.d and dpossible then d = "down"
+    if b & m.left_up == m.left_up then
+        if can_lu then d = "left-up"
+        elseif can_l then d = "left"
+        elseif can_u then d = "up" end
+    elseif b & m.left_down == m.left_down then
+        if can_ld then d = "left-down"
+        elseif can_l then d = "left"
+        elseif can_d then d = "down" end
+    elseif b & m.right_up == m.right_up then
+        if can_ru then d = "right-up"
+        elseif can_r then d = "right"
+        elseif can_u then d = "up" end
+    elseif b & m.right_down == m.right_down then
+        if can_rd then d = "right-down"
+        elseif can_r then d = "right"
+        elseif can_d then d = "down" end
+    elseif b & m.left == m.left and can_l then d = "left"
+    elseif b & m.right == m.right and can_r then d = "right"
+    elseif b & m.up == m.up and can_u then d = "up"
+    elseif b & m.down == m.down and can_d then d = "down"
     end
 
     local on_collision = function(victim)
