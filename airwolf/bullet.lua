@@ -19,12 +19,23 @@ end
 
 -- Returns true when the bullet is outside the screen.
 function Bullet:update()
-    if self.entity:is_enemy() then
-        self.entity.y += 2
-        return (self.entity.y > 127)
+    local destroyed = false
+    local is_enemy = self.entity:is_enemy()
+    local on_collision = function(victim)
+        local t = victim.entity.type
+        if (is_enemy and t == "airwolf") or (not is_enemy and t == "enemy") then
+            victim:hit()
+
+            destroyed = true
+        end
+    end
+
+    if is_enemy then
+        self.entity:move("down", 2, on_collision)
+        return destroyed or self.entity.y > 127
     else
-        self.entity.y -= 2
-        return (self.entity.y < 0)
+        self.entity:move("up", 2, on_collision)
+        return destroyed or self.entity.y < 0
     end
 end
 
