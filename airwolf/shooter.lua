@@ -4,7 +4,7 @@ Shooter.__index = Shooter
 function Shooter:new(bprops)
     local this = setmetatable({}, Shooter)
     this.bprops = bprops -- Bullet properties.
-    this.last_bullet = time()
+    this.lb = time() -- Time last bullet was fired.
 
     return this
 end
@@ -20,8 +20,8 @@ function Shooter:shoot(entity)
     local type = (entity:is_enemy()) and "enemy-bullet" or "airwolf-bullet"
     local b = Bullet:new(e.x + p.x_offset, e.y + p.y_offset, type, p.sw, p.sh);
     entities:add_bullet(b)
-    self.last_bullet = time()
+    self.lb = time()
 end
 
 -- Returns true if there has been sufficient time since the last bullet.
-function Shooter:bullet_cool_down() return time() - self.last_bullet > self.bprops.interval end
+function Shooter:bullet_cool_down() return t() - self.lb > self.bprops.interval end
