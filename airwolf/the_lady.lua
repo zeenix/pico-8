@@ -78,7 +78,7 @@ function TheLady:move()
     end
 
     local on_collision = function(victim)
-        if victim == "enemy-bullet" then
+        if victim.entity.type == "enemy-bullet" then
             self:hit()
         end
     end

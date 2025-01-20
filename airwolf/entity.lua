@@ -56,7 +56,7 @@ end
 
 function Entity:collided_with()
     for e in all(entities.entities) do
-        if (self:collided(e.entity)) return e.entity.type
+        if (self:collided(e.entity)) return e
     end
 end
 

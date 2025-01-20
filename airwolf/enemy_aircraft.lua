@@ -60,11 +60,12 @@ function EnemyAircraft:move()
     elseif e.x > airwolf.entity.x then d = "left-down" end
 
     local on_collision = function(victim)
-        if sub(victim, 1, 7) == "airwolf" then
-            if (#victim == 7) airwolf:hit() -- airwolf, not airwolf-bullet.
+        local type = victim.entity.type
+        if sub(type, 1, 7) == "airwolf" then
+            if (#type == 7) airwolf:hit() -- airwolf, not airwolf-bullet.
 
             self:hit()
-        elseif victim == "enemy" then
+        elseif type == "enemy" then
             -- Just move the enemy aircraft back to its previous position.
             e.x = x
             e.y = y
