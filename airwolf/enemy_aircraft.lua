@@ -27,6 +27,8 @@ end
 
 -- Returns true if the aircraft has gone outside the screen.
 function EnemyAircraft:update()
+    if not self.alive then return true end
+
     local outside = false
     if scene == "game" then
         outside = self:move()
@@ -59,10 +61,9 @@ function EnemyAircraft:move()
 
     local on_collision = function(victim)
         if sub(victim, 1, 7) == "airwolf" then
-            if (#victim == 7) airwolf:hit()
+            if (#victim == 7) airwolf:hit() -- airwolf, not airwolf-bullet.
 
-            sfx(2)
-            self.alive = false
+            self:hit()
         elseif victim == "enemy" then
             -- Just move the enemy aircraft back to its previous position.
             e.x = x
@@ -73,4 +74,9 @@ function EnemyAircraft:move()
     e:move(d, 0.3, on_collision)
 
     return (not self.alive) or e.x < 0 or e.x > 127 or e.y > 127
+end
+
+function EnemyAircraft:hit()
+    sfx(2)
+    self.alive = false
 end
