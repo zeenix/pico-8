@@ -77,12 +77,7 @@ function TheLady:move()
     elseif b & m.down == m.down and can_d then d = "down"
     end
 
-    local on_collision = function(victim)
-        if victim.entity.type == "enemy-bullet" then
-            self:hit()
-        end
-    end
-    self.entity:move(d, 0.7, on_collision)
+    self.entity:move(d, 0.7)
 
     return false
 end

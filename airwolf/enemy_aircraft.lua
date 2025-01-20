@@ -61,8 +61,8 @@ function EnemyAircraft:move()
 
     local on_collision = function(victim)
         local type = victim.entity.type
-        if sub(type, 1, 7) == "airwolf" then
-            if (#type == 7) airwolf:hit() -- airwolf, not airwolf-bullet.
+        if type == "airwolf" then
+            airwolf:hit()
 
             self:hit()
         elseif type == "enemy" then

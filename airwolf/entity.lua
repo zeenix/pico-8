@@ -47,10 +47,11 @@ function Entity:move(dir, speed, on_collision)
         e.y += speed
     end
 
-    local airwolf = entities:airwolf()
-    local victim = e:collided_with()
-    if victim != nil then
-        on_collision(victim)
+    if on_collision != nil then
+        local victim = e:collided_with()
+        if victim != nil then
+            on_collision(victim)
+        end
     end
 end
 
