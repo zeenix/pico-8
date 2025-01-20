@@ -72,6 +72,5 @@ function EnemyAircraft:move()
 
     e:move(d, 0.3, on_collision)
 
-    --return (not e.alive) or e.x < 0 or e.x > 127 or e.y > 127
     return (not self.alive) or e.x < 0 or e.x > 127 or e.y > 127
 end
