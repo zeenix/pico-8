@@ -21,7 +21,7 @@ function Entities:update()
         if (e:update()) then
             if e.entity.type == "enemy" then
                 -- More points for letting an enemy aircraft go.
-                local incr = e.alive and 10 or 1
+                local incr = e.alive and 20 or 10
                 score += incr
             end
 
